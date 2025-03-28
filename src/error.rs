@@ -3,6 +3,7 @@ use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
 };
+use serde_json::json;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
@@ -17,16 +18,12 @@ pub enum ServerError {
 impl IntoResponse for ServerError {
     fn into_response(self) -> Response {
         match self {
-            ServerError::ValidationError(_) => {
-                // TODO: properly format this message
-                let message = format!(
-                    r#"
-                    {{
-                        "message": "Input validation error"
-                        "errors": [{self}]
-                    }}"#
-                )
-                .replace('\n', ", ");
+            ServerError::ValidationError(errors) => {
+                let message = json!({
+                    "message": "Input validation error",
+                    "errors": errors.0
+                })
+                .to_string();
                 (StatusCode::BAD_REQUEST, message)
             }
             ServerError::AxumJsonRejection(_) => (StatusCode::BAD_REQUEST, self.to_string()),

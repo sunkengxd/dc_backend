@@ -18,7 +18,15 @@ impl IntoResponse for ServerError {
     fn into_response(self) -> Response {
         match self {
             ServerError::ValidationError(_) => {
-                let message = format!("Input validation error: [{self}]").replace('\n', ", ");
+                // TODO: properly format this message
+                let message = format!(
+                    r#"
+                    {{
+                        "message": "Input validation error"
+                        "errors": [{self}]
+                    }}"#
+                )
+                .replace('\n', ", ");
                 (StatusCode::BAD_REQUEST, message)
             }
             ServerError::AxumJsonRejection(_) => (StatusCode::BAD_REQUEST, self.to_string()),

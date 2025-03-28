@@ -25,7 +25,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/sunkengxd/dc_backend.git
 ```
 
 ### 3. Navigate to the Project Directory

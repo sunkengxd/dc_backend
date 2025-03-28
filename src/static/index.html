@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="script.js" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Speed Control</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Speed Control</h1>
+
+            <div class="slider-container">
+                <input
+                    type="range"
+                    min="0"
+                    max="5"
+                    value="3"
+                    class="slider"
+                    id="speedSlider"
+                />
+                <div class="labels">
+                    <span>Stop</span>
+                    <span>Go Fast</span>
+                </div>
+            </div>
+
+            <div class="toggle-switch">
+                <span>Backwards</span>
+                <label class="switch">
+                    <input type="checkbox" id="directionToggle" checked />
+                    <span class="slider-switch"></span>
+                </label>
+                <span>Forwards</span>
+            </div>
+
+            <div class="value-display">
+                Current Speed: <span id="speedValue">Moderate</span><br />
+                Direction: <span id="directionValue">Forwards</span>
+            </div>
+        </div>
+    </body>
+</html>
